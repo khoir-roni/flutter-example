@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:latihan_sliver_list_sliver_grid/pixel_page.dart';
+import 'package:latihan_sliver_list_sliver_grid/Learning_patch_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: PixelPage(),
+      home: LearningPathPage(),
     );
   }
 }
