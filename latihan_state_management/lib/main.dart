@@ -1,30 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:latihan_state_management/provider/done_module_provider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp();
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+    return ChangeNotifierProvider(
+      create: (context) => DoneModuleProvider(),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          // This is the theme of your application.
+          //
+          // Try running your application with "flutter run". You'll see the
+          // application has a blue toolbar. Then, without quitting the app, try
+          // changing the primarySwatch below to Colors.green and then invoke
+          // "hot reload" (press "r" in the console where you ran "flutter run",
+          // or simply save your changes to "hot reload" in a Flutter IDE).
+          // Notice that the counter didn't reset back to zero; the application
+          // is not restarted.
+          primarySwatch: Colors.blue,
+        ),
+        home: ModulePage(),
       ),
-      home: ModulePage(),
     );
   }
 }
@@ -71,6 +76,8 @@ class DoneModuleList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final doneModuleList =
+        Provider.of<DoneModuleProvider>(context, listen: false).doneModuleList;
     return Scaffold(
       appBar: AppBar(
         title: Text('Done Module List'),
@@ -115,13 +122,17 @@ class _ModuleListState extends State<ModuleList> {
     return ListView.builder(
       itemCount: _moduleList.length,
       itemBuilder: (context, index) {
-        return ModuleTile(
-          moduleName: _moduleList[index],
-          isDone: widget.doneModuleList.contains(_moduleList[index]),
-          onClick: () {
-            setState(() {
-              widget.doneModuleList.add(_moduleList[index]);
-            });
+        return Consumer<DoneModuleProvider>(
+          builder: (context, value, child) {
+            return ModuleTile(
+              moduleName: _moduleList[index],
+              isDone: value.doneModuleList.contains(_moduleList[index]),
+              onClick: () {
+                setState(() {
+                  value.complete(_moduleList[index]);
+                });
+              },
+            );
           },
         );
       },
