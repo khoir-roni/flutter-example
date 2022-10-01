@@ -1,5 +1,7 @@
-import 'package:dicoding_subscriptions/home.dart';
+import 'home.dart';
+import 'localizations_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'common.dart';
 
@@ -12,32 +14,40 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-      title: 'Flutter Localization & Accessibility',
-      
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('id', ''),
-        Locale('en', ''),
-      ],
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
-        ),
-        scaffoldBackgroundColor: Colors.grey.shade50,
-        outlinedButtonTheme: OutlinedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            foregroundColor: Colors.white, backgroundColor: Colors.blueGrey.shade800,
+    return ChangeNotifierProvider<LocalizationProvider>(
+      create: (context) => LocalizationProvider(),
+      builder: (context, child) {
+        final provider = Provider.of<LocalizationProvider>(context);
+        return MaterialApp(
+          locale: provider.locale,
+          title: 'Flutter Localization & Accessibility',
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: const [
+            Locale('id', ''),
+            Locale('en', ''),
+            Locale('ar', '')
+          ],
+          theme: ThemeData(
+            appBarTheme: const AppBarTheme(
+              backgroundColor: Colors.white,
+              foregroundColor: Colors.black,
+            ),
+            scaffoldBackgroundColor: Colors.grey.shade50,
+            outlinedButtonTheme: OutlinedButtonThemeData(
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.blueGrey.shade800,
+              ),
+            ),
           ),
-        ),
-      ),
-      home: HomePage(),
+          home: HomePage(),
+        );
+      },
     );
   }
 }

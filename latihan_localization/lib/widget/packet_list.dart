@@ -1,8 +1,9 @@
-import 'package:dicoding_subscriptions/content/free_packet_card.dart';
-import 'package:dicoding_subscriptions/content/or_widget.dart';
-import 'package:dicoding_subscriptions/content/paid_packet_card.dart';
-import 'package:dicoding_subscriptions/widget/max_width_widget.dart';
 import 'package:flutter/material.dart';
+
+import '../content/free_packet_card.dart';
+import '../content/or_widget.dart';
+import '../content/paid_packet_card.dart';
+import 'max_width_widget.dart';
 
 class PackageList extends StatelessWidget {
   const PackageList({Key? key}) : super(key: key);

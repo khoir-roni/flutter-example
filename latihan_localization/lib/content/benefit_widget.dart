@@ -1,4 +1,4 @@
-import 'package:dicoding_subscriptions/content/benefit_table.dart';
+import 'benefit_table.dart';
 import 'package:flutter/material.dart';
 
 import '../common.dart';

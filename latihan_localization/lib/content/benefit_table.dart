@@ -1,5 +1,5 @@
-import 'package:dicoding_subscriptions/classes/benefit_feature.dart';
-import 'package:dicoding_subscriptions/widget/table_cell_widget.dart';
+import '../classes/benefit_feature.dart';
+import '../widget/table_cell_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../common.dart';
