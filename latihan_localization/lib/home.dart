@@ -1,4 +1,5 @@
 import 'package:app_settings/app_settings.dart';
+import 'package:dicoding_subscriptions/common.dart';
 import 'package:dicoding_subscriptions/widget/flag_icon_widget.dart';
 import 'widget/max_width_widget.dart';
 import 'package:flutter/material.dart';
@@ -16,9 +17,15 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Image.asset("assets/dicoding-academy.png"),
+          child: Image.asset(
+            "assets/dicoding-academy.png",
+            semanticLabel: AppLocalizations.of(context)!.accLogoAppBar,
+          ),
         ),
-        title: const Text("Dicoding Academy"),
+        title: Text(
+          "Dicoding Academy",
+          semanticsLabel: AppLocalizations.of(context)!.accTitleAppBar,
+        ),
         actions: [
           FlagIconWidget(),
           IconButton(
@@ -26,6 +33,7 @@ class HomePage extends StatelessWidget {
               AppSettings.openDeviceSettings();
             },
             icon: const Icon(Icons.settings),
+            tooltip: AppLocalizations.of(context)!.accOpenSetting,
           ),
         ],
       ),
