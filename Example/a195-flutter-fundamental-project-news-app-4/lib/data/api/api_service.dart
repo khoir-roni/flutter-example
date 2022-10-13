@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../model/article.dart';
+import 'package:dicoding_news_app/data/model/article.dart';
 
 class ApiService {
   static const String _baseUrl = 'https://newsapi.org/v2/';
-  static const String _apiKey = '23ecd9dfdd924c8f914007efc3dfc919';
+  static const String _apiKey = 'YOUR_API_KEY';
   static const String _category = 'business';
   static const String _country = 'id';
 
@@ -17,4 +17,3 @@ class ApiService {
     }
   }
 }
-
